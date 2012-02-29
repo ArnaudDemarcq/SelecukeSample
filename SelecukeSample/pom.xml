@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.krohm.selecuke</groupId>
+        <artifactId>SelecukeParent</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+    </parent>
+    <name>MyCucumberSample</name>
+    <groupId>org.krohm.test</groupId>
+    <artifactId>HelloCucumber</artifactId>
+    <version>${parent.version}</version>
+    <packaging>jar</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <!-- Starts SELENIUM -->
+                <!-- As we are testing da web -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>selenium-maven-plugin</artifactId>
+            </plugin>
+            <!-- CUCUMBER -->
+            <plugin>
+                <groupId>cuke4duke</groupId>
+                <artifactId>cuke4duke-maven-plugin</artifactId>
+            </plugin>
+            <!-- Properties to be loaded by java step definitions -->
+            <!-- this will allow to configure the entire project for this pom only  -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.krohm.selecuke</groupId>
+            <artifactId>GenericUtil</artifactId>
+            <version>${parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <repository>
+            <id>krohm.cloudbees.snapshot</id>
+            <name>Public Snapshot Repository</name>
+            <url>http://repository-krohm.forge.cloudbees.com/snapshot/</url>
+        </repository>
+    </repositories>
+    <properties>
+        <cucumber.features>${project.basedir}/src/test/features</cucumber.features>
+        <cucumber.env.homepage.url>http://www.bing.com/</cucumber.env.homepage.url>
+        <cucumber.env.webdriver>${driver.firefox}</cucumber.env.webdriver>
+    </properties>
+</project>
