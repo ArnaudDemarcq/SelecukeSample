@@ -61,5 +61,6 @@
         <cucumber.features>${project.basedir}/src/test/features</cucumber.features>
         <cucumber.env.homepage.url>http://www.bing.com/</cucumber.env.homepage.url>
         <cucumber.env.webdriver>${driver.firefox}</cucumber.env.webdriver>
+        <cucumber.installGems>true</cucumber.installGems>
     </properties>
 </project>
