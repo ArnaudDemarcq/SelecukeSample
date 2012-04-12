@@ -13,6 +13,7 @@ import cuke4duke.annotation.I18n.EN.Then;
 import cuke4duke.annotation.Pending;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 //END:imports
@@ -38,14 +39,14 @@ public class MyTestFeature {
     public void gotoGoogle() {
         String targetURL = Env.getProperties().getProperty(testUrlPropName);
         logger.info("HomePage is :<" + targetURL + ">");
-        RemoteWebDriver browser = GenericSeleniumUtil.getBrowser();
+        WebDriver browser = GenericSeleniumUtil.getBrowser();
         browser.navigate().to(targetURL);
         logger.info("HomePage Reached");
     }
 
     @When("^I enter the following query: \"([^\"]*)\"$")
     public void enterRequest(String queryString) throws InterruptedException {
-        RemoteWebDriver browser = GenericSeleniumUtil.getBrowser();
+        WebDriver browser = GenericSeleniumUtil.getBrowser();
         WebElement queryElement = browser.findElement(By.id("sb_form_q"));
         queryElement.sendKeys(queryString);
         WebElement validationElement = browser.findElement(By.id("sb_form_go"));
@@ -56,7 +57,7 @@ public class MyTestFeature {
 
     @When("^I click the first link$")
     public void clickFirstLink() throws InterruptedException {
-        RemoteWebDriver browser = GenericSeleniumUtil.getBrowser();
+        WebDriver browser = GenericSeleniumUtil.getBrowser();
         WebElement resultsElement = browser.findElement(By.id("results"));
         resultsElement.findElements(By.tagName("li"));
         WebElement firstLink = resultsElement.findElements(By.tagName("li")).get(0).findElement(By.tagName("a"));
@@ -86,7 +87,7 @@ public class MyTestFeature {
         String targetURL = Env.getProperties().getProperty(testUrlPropName);
         logger.error("WE ARE TRYING, BABY !" + targetURL);
         //String targetURL = Env.getProperties().getProperty(testUrlPropName);
-        RemoteWebDriver browser = GenericSeleniumUtil.getBrowser();
+        WebDriver browser = GenericSeleniumUtil.getBrowser();
         browser.navigate().to(targetURL);
         logger.error("WE ARE LOGGED IN, BABY !");
     }
@@ -94,7 +95,7 @@ public class MyTestFeature {
     @When("^I log in with id \"([^\"]*)\" and password \"([^\"]*)\" $")
     public void iLogInWithParams(String login, String password) {
         String targetURL = Env.getProperties().getProperty(testUrlPropName);
-        RemoteWebDriver browser = GenericSeleniumUtil.getBrowser();
+        WebDriver browser = GenericSeleniumUtil.getBrowser();
         browser.navigate().to(targetURL);
         logger.error("WE ARE LOGGED IN, BABY !");
     }
